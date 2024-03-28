@@ -16,7 +16,7 @@ Este proyecto requiere Python 3.7+.
 1. **Clonar el Repositorio**
 
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
+   git clone https://github.com/Hecatonquiros/mlops-challenge.git
    cd tu-repositorio
    ```
 
@@ -51,9 +51,10 @@ El servidor estará disponible en `http://127.0.0.1:8000`. Puedes acceder a la d
 Para usar el endpoint de clasificación de gafas, sigue estos pasos:
 
 1. Accede a Swagger UI en `http://127.0.0.1:8000/docs`.
-2. Selecciona el endpoint `/predict/`.
-3. Usa el botón "Try it out" para cargar una imagen.
-4. Haz clic en "Execute" para enviar la imagen y recibir la predicción.
+2. Introduce en el authorize las credenciales (username: admin, password: password)
+3. Selecciona el endpoint `/predict/`.
+4. Usa el botón "Try it out" para cargar una imagen (hay de ejemplo en la carpeta app/tests/test_files)
+5. Haz clic en "Execute" para enviar la imagen y recibir la predicción.
 
 ## Licencia
 
