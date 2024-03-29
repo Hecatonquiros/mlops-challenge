@@ -50,6 +50,16 @@ uvicorn app.main:app --reload
 
 El servidor estará disponible en `http://127.0.0.1:8000`. Puedes acceder a la documentación de la API y probar los endpoints directamente a través de Swagger UI en `http://127.0.0.1:8000/docs`.
 
+## Uso
+
+Para usar el endpoint de clasificación de gafas, sigue estos pasos:
+
+1. Accede a Swagger UI en `http://127.0.0.1:8000/docs`.
+2. Introduce en el authorize las credenciales (username: admin, password: password)
+3. Selecciona el endpoint `/predict/`.
+4. Usa el botón "Try it out" para cargar una imagen (hay de ejemplo en la carpeta app/tests/test_files)
+5. Haz clic en "Execute" para enviar la imagen y recibir la predicción.
+
 ## Docker
 
 Este proyecto se puede ejecutar dentro de un contenedor Docker. Sigue estos pasos para construir y ejecutar el contenedor:
@@ -125,12 +135,18 @@ Con tu token de acceso, puedes ahora hacer solicitudes a rutas protegidas utiliz
       -H 'accept: application/json' \
       -H 'Authorization: Bearer TU_TOKEN_DE_ACCESO' \
       -H 'Content-Type: multipart/form-data' \
-      -F 'file=@sample_face01.png;type=image/png'
+      -F 'file=@sample_face.png;type=image/png'
     ```
 
     Este comando envía una solicitud POST a la ruta `/predict/`, incluyendo el archivo `sample_face01.png` como parte del cuerpo de la solicitud. La autenticación se maneja mediante el encabezado `Authorization`, que incluye el token de acceso obtenido previamente.
 
 Recuerda reemplazar `sample_face01.png` con la ruta correcta al archivo de imagen que deseas enviar en tu solicitud. Si todo es correcto, recibirás una respuesta de la API basada en la lógica implementada para la ruta `/predict/`.
+
+## Imágenes de Ejemplo para Pruebas
+
+Para facilitar la prueba y demostración de la funcionalidad de clasificación de la aplicación, hemos proporcionado un par de imágenes de ejemplo. Estas imágenes están diseñadas para mostrar cómo la aplicación puede clasificar correctamente si una persona en una foto está usando gafas o no.
+
+Puedes encontrar estas imágenes de ejemplo en la carpeta [file tests](app/tests/test_files) dentro del proyecto. Estas imágenes cubren los dos casos de uso, incluyendo personas con y sin gafas, para ayudarte a evaluar la precisión y el rendimiento de la clasificación.
 
 ## Licencia
 
