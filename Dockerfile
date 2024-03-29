@@ -1,12 +1,14 @@
-FROM python:slim
+FROM python:3.10
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copiar el archivo de dependencias y instalarlas.
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+COPY ./app /usr/src/app/app
+COPY requirements.txt /usr/src/app/
 
-COPY /app .
+RUN pip install --no-cache-dir -r requirements.txt
+
 EXPOSE 8000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENV PYTHONPATH=/usr/src/app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

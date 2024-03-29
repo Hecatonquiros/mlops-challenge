@@ -3,11 +3,15 @@
 
 Este proyecto utiliza FastAPI para exponer un modelo de inteligencia artificial que puede clasificar si una persona en una foto proporcionada está usando gafas. El modelo se basa en el dataset Olivetti Faces y ha sido entrenado para reconocer la presencia de gafas en imágenes faciales.
 
-## Características
+## Características Adicionales
 
-- **FastAPI**: Framework moderno y rápido (de alto rendimiento) para construir APIs con Python 3.7+.
-- **Modelo de IA**: Utiliza un modelo SVM entrenado previamente para clasificar imágenes.
-- **Swagger UI**: Documentación interactiva de la API y pruebas de endpoints integradas.
+- **Logging de aplicación**: Registro completo de eventos de la aplicación en `/logs/app.log`, facilitando el seguimiento y la depuración.
+- **Autenticación**: Autenticación segura mediante tokens JWT. La autenticación se realiza a través de un Bearer Token para proteger las rutas críticas.
+- **Manejo de excepciones**: Un módulo de excepciones personalizadas que captura y registra errores, mejorando la fiabilidad y mantenibilidad del código.
+- **Modelo de token**: Uso del modelo Pydantic para la validación de tokens y datos entrantes, asegurando la integridad de los datos a través de la aplicación.
+- **Configuración centralizada**: Un módulo de configuración inicializa valores críticos de la aplicación al arranque, asegurando que todos los componentes estén correctamente configurados.
+- **Pruebas integradas**: Pruebas unitarias y de integración para modelos y rutas utilizando `pytest`, garantizando la calidad del código y facilitando la integración continua.
+- **Rutas API**: Dos rutas principales, `/token` para la generación de tokens de autenticación y `/predict` para la clasificación de imágenes, asegurando una interfaz clara y funcional para los usuarios de la API.
 
 ## Instalación
 
