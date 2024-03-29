@@ -2,8 +2,8 @@ import os
 import pickle
 from fastapi import FastAPI
 
-from app.logging import setup_log
-from app import exceptions
+from logging import setup_log
+import exceptions
 
 from .routes import auth
 from .routes import predict
