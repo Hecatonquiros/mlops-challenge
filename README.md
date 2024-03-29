@@ -50,16 +50,6 @@ uvicorn app.main:app --reload
 
 El servidor estará disponible en `http://127.0.0.1:8000`. Puedes acceder a la documentación de la API y probar los endpoints directamente a través de Swagger UI en `http://127.0.0.1:8000/docs`.
 
-## Uso
-
-Para usar el endpoint de clasificación de gafas, sigue estos pasos:
-
-1. Accede a Swagger UI en `http://127.0.0.1:8000/docs`.
-2. Introduce en el authorize las credenciales (username: admin, password: password)
-3. Selecciona el endpoint `/predict/`.
-4. Usa el botón "Try it out" para cargar una imagen (hay de ejemplo en la carpeta app/tests/test_files)
-5. Haz clic en "Execute" para enviar la imagen y recibir la predicción.
-
 ## Docker
 
 Este proyecto se puede ejecutar dentro de un contenedor Docker. Sigue estos pasos para construir y ejecutar el contenedor:
