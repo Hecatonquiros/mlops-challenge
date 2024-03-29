@@ -56,6 +56,30 @@ Para usar el endpoint de clasificación de gafas, sigue estos pasos:
 4. Usa el botón "Try it out" para cargar una imagen (hay de ejemplo en la carpeta app/tests/test_files)
 5. Haz clic en "Execute" para enviar la imagen y recibir la predicción.
 
+## Docker
+
+Este proyecto se puede ejecutar dentro de un contenedor Docker. Sigue estos pasos para construir y ejecutar el contenedor:
+
+1. **Construir la Imagen de Docker**
+
+   En la raíz del proyecto, ejecuta:
+
+   ```bash
+   docker build -t clasificacion-gafas-fastapi .
+   ```
+
+   Esto construirá una imagen de Docker con la etiqueta `clasificacion-gafas-fastapi` basada en el `Dockerfile` en la raíz del proyecto.
+
+2. **Ejecutar el Contenedor**
+
+   Una vez construida la imagen, puedes ejecutarla con:
+
+   ```bash
+   docker run -d --name myfastapi -p 8000:8000 clasificacion-gafas-fastapi
+   ```
+
+   Esto iniciará un contenedor llamado `myfastapi`, exponiendo el servidor FastAPI en el puerto 8000 de tu máquina local.
+
 ## Licencia
 
 Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
