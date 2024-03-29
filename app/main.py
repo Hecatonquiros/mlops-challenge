@@ -15,7 +15,6 @@ setup_log()
 
 # Exceptions handler
 app.add_exception_handler(Exception, exceptions.generic_exception_handler)
-print("Directorio de trabajo actual:", os.getcwd())
 
 # ROUTERs
 app.include_router(auth.router)
