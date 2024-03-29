@@ -21,7 +21,7 @@ Este proyecto requiere Python 3.7+.
 
    ```bash
    git clone https://github.com/Hecatonquiros/mlops-challenge.git
-   cd tu-repositorio
+   cd mlops-challenge
    ```
 
 2. **Crear y Activar un Entorno Virtual (Opcional)**
