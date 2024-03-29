@@ -84,6 +84,64 @@ Este proyecto se puede ejecutar dentro de un contenedor Docker. Sigue estos paso
 
    Esto iniciará un contenedor llamado `myfastapi`, exponiendo el servidor FastAPI en el puerto 8000 de tu máquina local.
 
+## Uso de Swagger UI con Autenticación OAuth2
+
+Una vez que el servidor FastAPI esté en ejecución, puedes utilizar Swagger UI para interactuar con la API, incluyendo las rutas protegidas mediante autenticación OAuth2. Sigue estos pasos para autenticarte:
+
+1. Abre Swagger UI accediendo a [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) en tu navegador.
+
+2. Haz clic en el botón `Authorize` que encontrarás en la parte superior derecha de la página de Swagger UI.
+
+3. Se abrirá una ventana emergente de autenticación. Aquí deberás introducir tus credenciales de usuario (`username` y `password`) en los campos correspondientes.
+
+    - **Nota:** Debes usar las credenciales válidas que tu API espera. Por ejemplo, si tienes un usuario administrador, podrías necesitar introducir `username: admin` y `password: tu_contraseña`.
+
+4. Después de llenar los campos con tus credenciales, haz clic en el botón `Authorize` dentro de la ventana emergente para enviar la solicitud de token.
+
+5. Una vez autenticado exitosamente, puedes cerrar la ventana emergente. Swagger UI utilizará el token de acceso obtenido para todas las solicitudes subsiguientes a rutas protegidas.
+
+6. Para cerrar la sesión en Swagger UI y eliminar el token de acceso, puedes hacer clic en el botón `Logout` situado junto al botón `Authorize`.
+
+Ahora estás listo para probar las rutas protegidas en tu API directamente desde Swagger UI, con cada solicitud incluyendo automáticamente el token de acceso requerido.
+
+## Uso de CURL para Autenticación y Acceso a Rutas Protegidas
+
+Para interactuar con rutas protegidas desde la línea de comandos, puedes usar `curl` para primero obtener un token de acceso y luego incluir este token en tus solicitudes subsiguientes.
+
+### Obtener Token de Acceso
+
+1. Usa el siguiente comando `curl` para obtener un token de acceso. Reemplaza `tu_usuario` y `tu_contraseña` con tus credenciales válidas.
+
+    ```bash
+    curl -X 'POST' \
+      'http://localhost:8000/token' \
+      -H 'Content-Type: application/x-www-form-urlencoded' \
+      -d 'username=tu_usuario&password=tu_contraseña'
+    ```
+
+    Este comando enviará tus credenciales a la ruta `/token` y, si son válidas, recibirás una respuesta que incluye un token de acceso.
+
+2. Copia el token de acceso desde la respuesta. Lo necesitarás para realizar solicitudes a rutas protegidas.
+
+### Hacer una Solicitud a una Ruta Protegida
+
+Con tu token de acceso, puedes ahora hacer solicitudes a rutas protegidas utilizando `curl`. A continuación, se muestra cómo hacer una solicitud a la ruta `/predict/`, incluyendo el token de acceso en el encabezado `Authorization`.
+
+1. Reemplaza `TU_TOKEN_DE_ACCESO` en el siguiente comando con el token de acceso que obtuviste en el paso anterior. Asegúrate de incluir la palabra `Bearer` antes de tu token en el encabezado `Authorization`.
+
+    ```bash
+    curl -X 'POST' \
+      'http://localhost:8000/predict/' \
+      -H 'accept: application/json' \
+      -H 'Authorization: Bearer TU_TOKEN_DE_ACCESO' \
+      -H 'Content-Type: multipart/form-data' \
+      -F 'file=@sample_face01.png;type=image/png'
+    ```
+
+    Este comando envía una solicitud POST a la ruta `/predict/`, incluyendo el archivo `sample_face01.png` como parte del cuerpo de la solicitud. La autenticación se maneja mediante el encabezado `Authorization`, que incluye el token de acceso obtenido previamente.
+
+Recuerda reemplazar `sample_face01.png` con la ruta correcta al archivo de imagen que deseas enviar en tu solicitud. Si todo es correcto, recibirás una respuesta de la API basada en la lógica implementada para la ruta `/predict/`.
+
 ## Licencia
 
 Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
