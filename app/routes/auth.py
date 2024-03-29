@@ -25,6 +25,7 @@ def verify_credentials(username: str, password: str):
             True in case the user + password is valid. False in other case.
     """
     if username == "admin" and password == "password": # This check should be against an LDAP or an Active directory or a Local database.
+        logger.info(f"Correct login for {username}")
         return True
     return False
 
@@ -33,6 +34,7 @@ def create_access_token(data: dict, exp_min: int) -> str:
     expire = datetime.now(timezone.utc) + timedelta(minutes=exp_min)
     to_encode.update({"exp": expire})
     encode_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
+    logger.info(f"Creating token.")
     return encode_jwt
 
 @router.post("/token")
